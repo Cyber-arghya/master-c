@@ -1,6 +1,6 @@
 #include <stdio.h> 
 
 int main() {       
-    printf(".out file fix\n");
+    printf("good setup \n");
     return 0;     
 }
