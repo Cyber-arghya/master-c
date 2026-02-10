@@ -56,7 +56,7 @@ function install_git_suite() {
 
     # Global Gitignore
     local GITIGNORE_FILE="$HOME/.gitignore_global"
-    cat <<EOL > "$GITIGNORE_FILE"
+    cat <<'EOL' > "$GITIGNORE_FILE"
 # =========================
 # OPERATING SYSTEMS
 # =========================
