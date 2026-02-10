@@ -382,11 +382,33 @@ function run() {
 
 
 
+#publish all file to git repo with folder name 
+gpub() {
+    # Initialize git if not present, then commit and push via gh cli
+    [ -d .git ] || git init
+    
+    local repo_name=$(basename "$PWD")
+    git add . && git commit -m "Initial commit"
+    
+    # Create public repo and push current directory
+    gh repo create "$repo_name" --public --source=. --push && \
+    echo "✅ $repo_name is now live!"
+}
 
+#update the git repo 
+gup() {
+    # Exit if not a git repo
+    [ -d .git ] || { echo "❌ Error: Not a Git repo."; return 1; }
 
-
-
-
+    git add .
+    
+    # Commit with provided message or "Updates", then push if commit succeeds
+    if git commit -m "${1:-Updates}"; then
+        git push && echo "✅ Success: Pushed to GitHub!"
+    else
+        echo "⚠️ No changes to commit."
+    fi
+}
 
 
 
