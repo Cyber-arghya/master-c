@@ -336,20 +336,59 @@ function newrepof() {
 
 
 
-function crun() {
-    local filename=$1
-    local output="${filename%.*}.out"
+
+
+
+
+
+
+# Universal Run: Checks permission once, then runs forever.
+function run() {
+    local f="$1"
     
-    # কম্পাইল করা (আউটপুট ফাইলের শেষে .out থাকবে)
-    gcc "$filename" -o "$output"
-    
-    # রান করা
-    if [ -f "$output" ]; then
-        ./"$output"
-    else
-        echo "Error: Compilation failed."
-    fi
+    # 1. Validation
+    [ -z "$f" ] && { echo "Usage: run <filename>"; return 1; }
+    [ ! -f "$f" ] && { echo -e "${RED}File not found!${NC}"; return 1; }
+
+    local ext="${f##*.}"
+    local base="${f%.*}"
+
+    # 2. Smart Logic based on file type
+    case "$ext" in
+        c)   
+            # C needs compiling, output gets permission automatically by GCC
+            gcc -Wall -Wextra -pthread "$f" -o "$base.out" && ./"$base.out" 
+            ;;
+        
+        cpp) 
+            # C++ needs compiling (C++23)
+            g++ -Wall -Wextra -pthread -std=c++23 "$f" -o "$base.out" && ./"$base.out" 
+            ;;
+        
+        py)  python3 "$f" ;;
+        
+        js)  node "$f" ;;
+        
+        sh)  
+            # Check if executable? If NOT, apply chmod (One time only)
+            [ ! -x "$f" ] && chmod +x "$f"
+            ./"$f" 
+            ;;
+            
+        *)   echo -e "${RED}Unsupported: .$ext${NC}"; return 1 ;;
+    esac
 }
+
+
+
+
+
+
+
+
+
+
+
 
 gacp() {
   if [ -z "$1" ]; then
