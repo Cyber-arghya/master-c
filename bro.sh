@@ -128,6 +128,8 @@ coverage/
 *.o
 *.obj
 *.exe
+*.out
+a.out
 *.dll
 *.so
 *.dylib
