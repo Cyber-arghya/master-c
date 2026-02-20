@@ -3,50 +3,57 @@
 
 int main() {
 
-int age    =  22;
-int *ptr   = &age; // ptr is a pointer variable that // *value at address //
-int **pptr = &ptr; // pptr is a pointer to pointer  variable
+int age    =  24;
+int *ptr   = &age; // ptr is a pointer value that // *value at address //
+int **pptr = &ptr; // pptr is a pointer to pointer  value
 
 //address
-printf("\n\n------------------------    pointer    ---------------------\n\n");
-printf("Address of age [ &age ]-------------p = %p\n", &age); 
-printf("Value  of age [ age ]--------------d = %d\n", age ); 
-printf("\n"); 
-printf("Address inside [ ptr ] -------------p = %p\n", ptr );  // ptr stores the address of age   
-printf("Address of [ptr] (&ptr)------------p = %p\n", &ptr);  // ptr own adress 
-printf("Value at adress [ *ptr ]-----------d = %d\n", *ptr);
-printf("Value at adress [ *(&age) ]--------d = %d\n", *(&age));
-printf("\n");
-printf("Address inside [ pptr ] ------------p = %p\n", pptr ); // pptr stores the address of ptr   
-printf("Address of [pptr] (&pptr)----------p = %p\n", &pptr); // pptr own adress
-printf("Value at adress [ **pptr ]---------d = %d\n", **pptr);// To see the data, you "hop" twice with **pptr.        
+printf("\n-------------------------------------------------------------------------------------------\n");
+
+printf("Address of         [ &age ]--------------p = %p\n", &age); 
+printf("value of           [ age ]---------------d = %d\n", age ); 
+
+printf("\n---------------    pointer  int *   ---------------------------------------------------\n\n");
+
+printf("Address inside  pointer [ ptr ]----------p = %p\n", ptr );  // ptr stores the address of age   
+printf("ptr own address         [ &ptr ]---------p = %p\n", &ptr);  // ptr own address 
+printf("age value using pointer [ *ptr ]---------d = %d\n", *ptr);
+printf("age value using pointer [ *(&age) ]------d = %d\n", *(&age));
+
+printf("\n---------------   pointer to pointer int **   -------------------------------------------\n\n");
+
+printf("Address inside  pointer [ pptr ] --------p = %p\n", pptr ); // pptr stores the address of ptr   
+printf("pptr own address        [ &pptr ]--------p = %p\n", &pptr); 
+printf("age value using pointer to pointer [ **pptr ]---------d = %d\n", **pptr);// To see the data, you "hop" twice with **pptr.        
+
 printf("\n");
 
 
-int value;   // variable declar ;
+int var;   // variable declar ;
 int *address; // pointer variable declar ;
 
-address = &value ; // address of value ;
-*address = 2026 ; // assign value at address ;
+address = &var ; // Address  of [ variable ] assign inside [ address ] ;
+*address = 2026 ; // assign a value inside  [ variable ] using pointer  ;
 
-printf("-----    variable value Manipulation using pointer    ------\n\n");
-printf("value = %d\n", value); 
-printf("value at *address = %d\n", *address);
+printf("----------    Value  Manipulation using pointer    ---------------------------------------\n\n");
+printf("Initial var                                    = %d\n", var); 
+printf("var value print using pointer [ *address ]     = %d\n", *address);
 printf("\n");
 
 (*address)++;
 
-printf("---------------------    (*address)++;    ------------------\n\n");
-printf("value = %d\n", value); 
-printf("value at *address = %d\n", *address);
+printf("----------------------   (*address)++;  //  increment   -----\n\n");
+printf("After (*address)++ ; var                       = %d\n", var); 
+printf("var value print  using pointer [ *address ]    = %d\n", *address);
 printf("\n");
 
 *address+=3;
 
-printf("----------------------    *address+=3;     -----------------\n\n");
-printf("value = %d\n", value); 
-printf("value at *adress = %d\n", *address);
-printf("\n------------------------------------------------------------\n");
+printf("----------------------    *address+=3;  // var + 3      -----\n\n");
+printf("After *address += 3 ; var                      = %d\n", var);
+printf("var value print using pointer [ (*address)-- ] = %d\n", (*address)--);
+printf("var value print using pointer [ *address ]     = %d\n", *address);
+printf("\n-----------------------------------------------------------------------------------------\n");
 
 return 0;
 }
