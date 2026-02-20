@@ -4,7 +4,7 @@
 int main() {
 
 int age    =  22;
-int *ptr   = &age; // ptr is a pointer variable 
+int *ptr   = &age; // ptr is a pointer variable that *store adress 
 int **pptr = &ptr; // pptr is a pointer to pointer  variable
 
 //address
